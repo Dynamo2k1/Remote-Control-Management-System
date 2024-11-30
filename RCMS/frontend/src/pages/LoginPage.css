@@ -1,0 +1,115 @@
+/* LoginPage.css */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #141e30, #243b55); /* Cybersecurity-themed gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-card {
+    background: #1c1c1e;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+}
+
+.login-card h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #76ff03; /* Green for hacker theme */
+}
+
+.login-card p {
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: block;
+    color: #ddd;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background: #2c2c2e;
+    color: #fff;
+    outline: none;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+input:focus {
+    border: 2px solid #76ff03;
+}
+
+.password-group {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #76ff03;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+button.login-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background: #76ff03;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button.login-button:hover {
+    background: #64dd02;
+}
+
+.error-message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ff5252;
+}
