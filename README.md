@@ -92,8 +92,8 @@ Before getting started, ensure you have the following installed:
 
 1. **Clone this repository**:
    ```bash
-   git clone https://github.com/Dynamo2k1/RCMS.git
-   cd RCMS
+   git clone https://github.com/Dynamo2k1/Remote-Control-Management-System.git
+   cd Remote-Control-Management-System/RCMS
    ```
 
 2. **Start the system**:
