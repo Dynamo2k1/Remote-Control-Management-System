@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/LoginPage.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <button id="theme-toggle">🌙</button>
+            <h1>Remote Control Management System</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/about">About Us</a>
+                <a href="/contact">Contact</a>
+                <a href="{{ url_for('auth.login') }}">Login</a>
+                <a href="{{ url_for('auth.register') }}">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <div class="container">
+            <h1>Login</h1>
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+            <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a>.</p>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2024 Remote Control Management System. All rights reserved.</p>
+    </footer>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.querySelector('#theme-toggle');
+            const currentTheme = localStorage.getItem('theme') || 'light';
+
+            document.body.setAttribute('data-theme', currentTheme);
+            toggleButton.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+            toggleButton.addEventListener('click', function () {
+                const theme = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                document.body.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                toggleButton.textContent = theme === 'dark' ? '☀️' : '🌙';
+            });
+        });
+    </script>
+</body>
+</html>

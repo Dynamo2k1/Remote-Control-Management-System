@@ -1,78 +1,187 @@
-/* Global Styles */
+/* General Body Styling */
 body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #003366, #002244);
-    color: #fff;
-}
-
-/* Navigation Bar */
-nav {
-    background-color: #00509e;
-    padding: 1rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-nav ul {
+    padding: 0;
+    color: #333;
     display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure full height layout */
+    transition: background-color 0.3s, color 0.3s ease; /* Smooth theme transitions */
+}
+
+/* Dark and Light Theme */
+body[data-theme="dark"] {
+    background-color: #222;
+    color: #f4f4f9;
+}
+
+body[data-theme="light"] {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Navigation Bar Styling */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #007BFF;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it stays above all other elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Navbar Links */
+nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
     justify-content: center;
+    gap: 20px;
 }
 
 nav ul li {
-    margin: 0 1rem;
+    display: inline-block;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #ffdd57;
+    background-color: #0056b3;
+    color: #e0e0e0;
 }
 
-/* Responsive Container */
+/* Theme Toggle Button */
+#theme-toggle {
+    font-size: 16px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.2);
+}
+
+/* Main Content Styling */
+main {
+    flex: 1;
+    margin-top: 70px; /* Space for fixed header */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Page Container Styling */
 .container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
-    background: rgba(255, 255, 255, 0.1);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fade-in 0.5s ease;
 }
 
-/* Footer Styles */
+/* Fade-in Effect */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Error Page Styling */
+.container .error-message {
+    font-size: 24px;
+    color: #ff6b6b;
+    margin-top: 20px;
+}
+
+/* Footer Styling */
 footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #00509e;
-    color: #fff;
-    position: fixed;
-    bottom: 0;
     width: 100%;
-    font-size: 0.9rem;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    margin-top: auto;
+    position: relative;
+    bottom: 0;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(1px);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+    }
+
     nav ul {
         flex-direction: column;
+        gap: 10px;
+        justify-content: center;
         align-items: center;
     }
 
-    nav ul li {
-        margin: 0.5rem 0;
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul li a {
+        font-size: 14px;
     }
 
     .container {
-        padding: 1.5rem;
+        padding: 10px;
     }
 }

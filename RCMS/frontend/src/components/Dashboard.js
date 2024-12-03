@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 import { executeDevices } from "../services/api";
-import "./Dashboard.css";
+import "./css/Dashboard.css";
 
 const Dashboard = () => {
     const [file, setFile] = useState(null);
-    const [results, setResults] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();  // Initialize navigate
 
     const handleFileUpload = async (e) => {
         e.preventDefault();
@@ -16,13 +17,22 @@ const Dashboard = () => {
             return;
         }
 
+        // Validate file type
+        const validExtensions = ["yaml", "yml"];
+        const fileExtension = file.name.split(".").pop().toLowerCase();
+        if (!validExtensions.includes(fileExtension)) {
+            setError("Invalid file type. Please upload a .yaml or .yml file.");
+            return;
+        }
+
         setLoading(true);
         setError(null);
 
         try {
             const response = await executeDevices(file);
             if (response.success) {
-                setResults(response.data.results);
+                // Pass the results to the ResultsPage via navigation state
+                navigate("/results", { state: { results: response.data.results } });
             } else {
                 setError(response.message);
             }
@@ -59,33 +69,6 @@ const Dashboard = () => {
             </form>
 
             {error && <p className="error-message">{error}</p>}
-
-            {/* Scrollable results section */}
-            {results && (
-                <div className="results-container">
-                    <h3>Execution Results:</h3>
-                    <div className="results-scroll">
-                        {results.map((deviceResult, index) => (
-                            <div key={index} className="device-card">
-                                <h4>Device: {deviceResult.device}</h4>
-                                <ul>
-                                    {deviceResult.results.map((action, idx) => (
-                                        <li key={idx} className={`action-result ${action.result.status === "❌ Failure" ? "failure" : "success"}`}>
-                                            <strong>Action:</strong> {action.action} <br />
-                                            <strong>Service:</strong> {action.service} <br />
-                                            <strong>Status:</strong> {action.result.status} <br />
-                                            <strong>Output:</strong>
-                                            <pre>{action.result.output || "No output"}</pre>
-                                            <strong>Error:</strong>
-                                            <pre>{action.result.error || "No error"}</pre>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

@@ -60,8 +60,12 @@ def execute_commands():
         logger.error("YAML file is missing.")
         return jsonify({"error": "YAML file is required"}), 400
 
+    # Log raw content of the YAML file
+    file_content = yaml_file.read()
+    logger.info(f"YAML file content: {file_content}")
+
     try:
-        config = yaml.safe_load(yaml_file)
+        config = yaml.safe_load(file_content)
         logger.info(f"Parsed YAML: {config}")
     except Exception as e:
         logger.error(f"Error parsing YAML file: {e}")
@@ -84,7 +88,6 @@ def execute_commands():
                     logger.info(f"Executing command on {ip}: {command}")
                     result = execute_command(ip, username, password, command)
 
-                    # Structure the result more clearly
                     device_results.append({
                         "action": action_name,
                         "service": service,
