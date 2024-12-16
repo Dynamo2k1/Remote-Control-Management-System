@@ -1,128 +1,107 @@
-/* General Body Styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body[data-theme="light"] {
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-body[data-theme="dark"] {
-    background-color: #222;
-    color: #f4f4f9;
-}
-
-/* Header Styling */
-.navbar {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.navbar h1 {
-    margin: 0;
-}
-
-.navbar nav {
-    display: flex;
-    gap: 15px;
-}
-
-.navbar nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.navbar nav a:hover {
-    background-color: #0056b3;
-}
-
-/* Main Content Styling */
-main {
+/* Register Container */
+.register-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Container Styling */
-.container {
+/* Register Card */
+.register-card {
     width: 100%;
     max-width: 400px;
     padding: 20px;
-    background: #ffffff;
+    background: var(--input-bg);
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Footer Styling */
-footer {
     text-align: center;
-    padding: 10px 0;
-    background-color: #333;
-    color: white;
 }
 
-/* Form Styling */
-form div {
+.register-card h2 {
     margin-bottom: 15px;
+    color: var(--text-color);
 }
 
-label {
+/* Form Group */
+.register-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Labels */
+.register-form label {
+    font-weight: bold;
+    color: #555;
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
-    color: #555555;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+/* Input Fields */
+.register-form input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid var(--input-border);
     border-radius: 5px;
-    font-size: 14px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s, box-shadow 0.3s ease;
 }
 
-/* Button Styling */
-button {
+.register-form input:focus {
+    border-color: var(--button-bg);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Password Input Container */
+.password-group {
+   position: relative; /* Position relative to contain the eye icon */
+}
+
+/* Eye Icon Styling */
+.eye-icon {
+   position: absolute; /* Position absolutely within the container */
+   right: 10px; /* Space from the right edge */
+   top: 50%; /* Center vertically */
+   transform: translateY(-50%); /* Adjust vertical alignment */
+   color: #aaa; /* Default icon color */
+   cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.eye-icon:hover {
+   color: var(--button-bg); /* Change icon color on hover for feedback */
+}
+
+/* Register Button */
+.register-button {
     width: 100%;
     padding: 10px;
-    background-color: #007BFF;
+    background-color: var(--button-bg);
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, transform 0.2s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
+.register-button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
 }
 
-/* Link Styling */
-p a {
-    color: #007BFF;
-    text-decoration: none;
-    transition: color 0.3s ease;
+/* Message Styling */
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
 }
 
-p a:hover {
-    color: #0056b3;
-    text-decoration: underline;
+.success-message {
+    color: green;
+    margin-top: 10px;
+    font-size: 14px;
 }

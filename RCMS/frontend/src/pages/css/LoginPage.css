@@ -86,43 +86,70 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555555;
+    color: #555555; /* Slightly darker for better contrast */
 }
 
+/* Input Field Styling */
+input[type="text"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 10px; /* Padding for better touch targets */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Font size for readability */
+}
+
+/* Password Input Container */
+.password-group {
+   position: relative; /* Position relative to contain the eye icon */
+}
+
+/* Eye Icon Styling */
+.eye-icon {
+   position: absolute; /* Position absolutely within the container */
+   right: 10px; /* Space from the right edge */
+   top: 50%; /* Center vertically */
+   transform: translateY(-50%); /* Adjust vertical alignment */
+   color: #aaa; /* Default icon color */
+   cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.eye-icon:hover {
+   color: #007BFF; /* Change icon color on hover for feedback */
 }
 
 /* Button Styling */
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+   width: 100%;
+   padding: 10px; 
+   background-color: #007BFF; 
+   color: white; 
+   border:none; 
+   border-radius:5px; 
+   font-size :16px; 
+   cursor:pointer; 
+   transition : background-color .3s ease; 
 }
 
-button:hover {
-    background-color: #0056b3;
+button:hover { 
+   background-color :#0056b3; 
 }
 
 /* Link Styling */
-p a {
-    color: #007BFF;
-    text-decoration: none;
-    transition: color 0.3s ease;
+p a { 
+   color :#007BFF; 
+   text-decoration :none; 
+   transition :color .3s ease; 
 }
 
-p a:hover {
-    color: #0056b3;
-    text-decoration: underline;
+p a:hover { 
+   color :#0056b3; 
+   text-decoration :underline; 
+}
+
+/* Error Message Styling */
+.error-message {
+   color : red; /* Red color for error messages */
+   margin-top :10px; /* Space above error message */
 }

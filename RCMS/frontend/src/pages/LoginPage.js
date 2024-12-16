@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { login } from "../services/api";
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
 import "./css/LoginPage.css";
 
 const LoginPage = () => {
@@ -44,21 +45,23 @@ const LoginPage = () => {
           </div>
           <div className="form-group password-group">
             <label htmlFor="password">Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <button
-              type="button"
-              className="toggle-password"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "Hide" : "Show"}
-            </button>
+            <div className="input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span 
+                className="eye-icon" 
+                onClick={() => setShowPassword(!showPassword)}
+                style={{ cursor: 'pointer' }} // Ensure the cursor shows pointer on hover
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
           </div>
           <button type="submit" disabled={isLoading} className="login-button">
             {isLoading ? "Logging in..." : "Login"}

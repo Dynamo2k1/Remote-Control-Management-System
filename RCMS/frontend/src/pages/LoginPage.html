@@ -27,13 +27,16 @@
         <div class="container">
             <h1>Login</h1>
             <form method="POST" action="{{ url_for('auth.login') }}">
-                <div>
+                <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
                 </div>
-                <div>
+                <div class="form-group password-group">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <div class="input-container">
+                        <input type="password" id="password" name="password" required>
+                        <span class="eye-icon" id="toggle-password-visibility" style="cursor: pointer;">👁️</span>
+                    </div>
                 </div>
                 <div>
                     <button type="submit">Login</button>
@@ -62,6 +65,20 @@
                 document.body.setAttribute('data-theme', theme);
                 localStorage.setItem('theme', theme);
                 toggleButton.textContent = theme === 'dark' ? '☀️' : '🌙';
+            });
+
+            // Password visibility toggle
+            const passwordField = document.querySelector('#password');
+            const togglePasswordIcon = document.querySelector('#toggle-password-visibility');
+            
+            togglePasswordIcon.addEventListener('click', function () {
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    togglePasswordIcon.textContent = '🙈'; // Change to closed eye icon
+                } else {
+                    passwordField.type = 'password';
+                    togglePasswordIcon.textContent = '👁️'; // Change to open eye icon
+                }
             });
         });
     </script>

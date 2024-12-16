@@ -1,35 +1,92 @@
-// src/pages/ResultsPage.js
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { register } from "../services/api";
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
+import "./css/RegisterPage.css";
 
-const ResultsPage = () => {
-    const location = useLocation();
-    const results = location.state?.results;  // Assuming results are passed via location state
+const RegisterPage = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
-    return (
-        <div className="results-page">
-            <h1>Execution Results</h1>
-            {results ? (
-                <div className="results-container">
-                    {results.map((deviceResult, index) => (
-                        <div key={index} className="device-result">
-                            <h3>Device: {deviceResult.device}</h3>
-                            {deviceResult.results.map((action, idx) => (
-                                <div key={idx} className={`action-result ${action.result.status === "❌ Failure" ? "failure" : "success"}`}>
-                                    <strong>Action:</strong> {action.action} <br />
-                                    <strong>Status:</strong> {action.result.status} <br />
-                                    <strong>Output:</strong> <pre>{action.result.output || "No output"}</pre>
-                                    <strong>Error:</strong> <pre>{action.result.error || "No error"}</pre>
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <p>No results found</p>
-            )}
-        </div>
-    );
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError("");
+    setSuccessMessage("");
+    setIsLoading(true);
+
+    const result = await register(username, email, password);
+    setIsLoading(false);
+
+    if (result.success) {
+      setSuccessMessage(result.message || "Registration successful");
+      setUsername("");
+      setEmail("");
+      setPassword("");
+    } else {
+      setError(result.message || "Failed to register");
+    }
+  };
+
+  return (
+    <div className="register-container">
+      <div className="register-card">
+        <h2>Create an Account</h2>
+        <form onSubmit={handleSubmit} className="register-form">
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group password-group"> {/* Added class for styling */}
+            <label htmlFor="password">Password</label>
+            <div className="input-container"> {/* Container for input and icon */}
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span 
+                className="eye-icon" 
+                onClick={() => setShowPassword(!showPassword)}
+                style={{ cursor: 'pointer' }} // Ensure the cursor shows pointer on hover
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+          </div>
+          <button type="submit" disabled={isLoading} className="register-button">
+            {isLoading ? "Registering..." : "Register"}
+          </button>
+        </form>
+        {error && <p className="error-message">{error}</p>}
+        {successMessage && <p className="success-message">{successMessage}</p>}
+      </div>
+    </div>
+  );
 };
 
-export default ResultsPage;
+export default RegisterPage;
