@@ -1,3 +1,4 @@
+import subprocess
 from flask import Blueprint, request, jsonify
 from utils.ssh_executor import create_ssh_connection, close_ssh_connection
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -12,7 +13,7 @@ device_bp = Blueprint("devices", __name__)
 
 # Mapping actions to commands
 COMMAND_MAP = {
-    "install": "echo {password} | sudo -S apt install -y {service}",
+    "install": "echo {password} | sudo -S DEBIAN_FRONTEND=noninteractive apt install -y {service}",
     "start": "echo {password} | sudo -S systemctl start {service} --no-pager",
     "stop": "echo {password} | sudo -S systemctl stop {service} --no-pager",
     "enable": "echo {password} | sudo -S systemctl enable {service} --no-pager",
@@ -20,26 +21,44 @@ COMMAND_MAP = {
     "status": "echo {password} | sudo -S systemctl status {service} --no-pager",
 }
 
+
 def execute_command(ip, username, password, command):
     """
-    Execute a command on a remote server over SSH.
+    Execute a command on a remote server over SSH and check its exit status.
     """
     try:
         ssh_client = create_ssh_connection(ip, username, password)
         if not ssh_client:
-            return {"output": "", "error": f"Failed to connect to {ip}"}
+            return {"output": "", "error": f"Failed to connect to {ip}", "status": "❌ Failure"}
 
         # Execute the command
-        stdin, stdout, stderr = ssh_client.exec_command(command)
-        output = stdout.read().decode().strip()
+        stdin, stdout, stderr = ssh_client.exec_command(f"{command}; echo $?")
+        output = stdout.read().decode().strip().split("\n")
         error = stderr.read().decode().strip()
+
+        # Extract exit status from the last line of stdout
+        exit_status = int(output[-1])
+        command_output = "\n".join(output[:-1])  # Everything except the last line is the command output
+
+        # Determine the status
+        if exit_status == 0:
+            status = "✔️ Success"
+        else:
+            status = "❌ Failure"
 
         close_ssh_connection(ssh_client)
 
-        return {"output": output, "error": error}
+        return {
+            "output": command_output if command_output else "No output",
+            "error": error if error else "No error",
+            "status": status,
+        }
     except Exception as e:
         logger.error(f"Command execution failed for {ip}: {e}")
-        return {"output": "", "error": str(e)}
+        return {"output": "", "error": str(e), "status": "❌ Failure"}
+
+
+
 
 @device_bp.route("/execute", methods=["POST"])
 @jwt_required()
@@ -94,7 +113,7 @@ def execute_commands():
                         "result": {
                             "output": result["output"] if result["output"] else "No output",
                             "error": result["error"] if result["error"] else "No error",
-                            "status": "✔️ Success" if not result["error"] else "❌ Failure"
+                            "status": result["status"]
                         }
                     })
                 else:
