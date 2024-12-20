@@ -28,6 +28,11 @@ body[data-theme="dark"] {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+body[data-theme="dark"] .navbar {
+    background-color: #333;
+    color: #f4f4f9;
+}
+
 .navbar h1 {
     margin: 0;
 }
@@ -46,8 +51,16 @@ body[data-theme="dark"] {
     transition: background-color 0.3s ease;
 }
 
+body[data-theme="dark"] .navbar nav a {
+    color: #f4f4f9;
+}
+
 .navbar nav a:hover {
     background-color: #0056b3;
+}
+
+body[data-theme="dark"] .navbar nav a:hover {
+    background-color: #444;
 }
 
 /* Main Content Styling */
@@ -56,6 +69,12 @@ main {
     justify-content: center;
     align-items: center;
     min-height: 80vh;
+    transition: background-color 0.3s ease;
+}
+
+body[data-theme="dark"] main {
+    background-color: #333;
+    color: #f4f4f9;
 }
 
 /* Container Styling */
@@ -66,6 +85,13 @@ main {
     background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="dark"] .container {
+    background: #444;
+    color: #f4f4f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Footer Styling */
@@ -74,6 +100,11 @@ footer {
     padding: 10px 0;
     background-color: #333;
     color: white;
+}
+
+body[data-theme="dark"] footer {
+    background-color: #111;
+    color: #f4f4f9;
 }
 
 /* Form Styling */
@@ -89,6 +120,10 @@ label {
     color: #555555; /* Slightly darker for better contrast */
 }
 
+body[data-theme="dark"] label {
+    color: #f4f4f9;
+}
+
 /* Input Field Styling */
 input[type="text"],
 input[type="email"],
@@ -98,6 +133,27 @@ input[type="password"] {
     border: 1px solid #ccc; /* Light gray border */
     border-radius: 5px; /* Rounded corners */
     font-size: 14px; /* Font size for readability */
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="dark"] input[type="text"],
+body[data-theme="dark"] input[type="email"],
+body[data-theme="dark"] input[type="password"] {
+    background-color: #555;
+    border: 1px solid #666;
+    color: #f4f4f9;
+}
+
+input:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+body[data-theme="dark"] input:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
 }
 
 /* Password Input Container */
@@ -113,10 +169,19 @@ input[type="password"] {
    transform: translateY(-50%); /* Adjust vertical alignment */
    color: #aaa; /* Default icon color */
    cursor: pointer; /* Change cursor to pointer on hover */
+   transition: color 0.3s ease;
+}
+
+body[data-theme="dark"] .eye-icon {
+   color: #ddd;
 }
 
 .eye-icon:hover {
    color: #007BFF; /* Change icon color on hover for feedback */
+}
+
+body[data-theme="dark"] .eye-icon:hover {
+   color: #66aaff;
 }
 
 /* Button Styling */
@@ -132,8 +197,17 @@ button {
    transition : background-color .3s ease; 
 }
 
+body[data-theme="dark"] button {
+   background-color: #0056b3;
+   color: #f4f4f9;
+}
+
 button:hover { 
    background-color :#0056b3; 
+}
+
+body[data-theme="dark"] button:hover {
+   background-color: #003f8f;
 }
 
 /* Link Styling */
@@ -143,9 +217,17 @@ p a {
    transition :color .3s ease; 
 }
 
+body[data-theme="dark"] p a {
+   color: #66aaff;
+}
+
 p a:hover { 
    color :#0056b3; 
    text-decoration :underline; 
+}
+
+body[data-theme="dark"] p a:hover {
+   color: #003f8f;
 }
 
 /* Error Message Styling */

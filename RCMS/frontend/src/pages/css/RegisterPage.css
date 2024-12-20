@@ -80,7 +80,7 @@
     width: 100%;
     padding: 10px;
     background-color: var(--button-bg);
-    color: white;
+    color: #0056b3;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -89,7 +89,8 @@
 }
 
 .register-button:hover {
-    background-color: var(--button-hover-bg);
+ 
+    background-color: black ;
     transform: translateY(-2px);
 }
 

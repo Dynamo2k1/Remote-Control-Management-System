@@ -1,12 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import AboutUs from "./pages/AboutUs";
-import Contact from "./pages/Contact";
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Dashboard from "./components/Dashboard";
-import ResultsPage from "./pages/ResultsPage";  // Import ResultsPage
-import Footer from "./components/Footer"; // Footer Component
+import Footer from "./components/Footer";
+import ResultsPage from "./pages/ResultsPage";
 import "./App.css";
 
 const App = () => {
@@ -30,18 +28,23 @@ const App = () => {
                 {/* Header */}
                 <header>
                     <nav className="navbar">
-                        <div className="navbar-container">
-                            <h1 className="navbar-title">Remote Control Management System</h1>
-                            <button id="theme-toggle" onClick={toggleTheme}>
-                                🌙
+                        <div className="navbar-left">
+                            <button
+                                id="theme-toggle"
+                                onClick={toggleTheme}
+                                aria-label="Toggle Theme"
+                                className="theme-toggle-btn"
+                            >
+                                {document.body.getAttribute("data-theme") === "dark" ? "☀️" : "🌙"}
                             </button>
                         </div>
-                        <ul className="navbar-links">
+                        <div className="navbar-title">Remote Control Management System</div>
+                        <ul className="navbar-right">
                             <li><Link to="/">Login</Link></li>
                             <li><Link to="/register">Register</Link></li>
-                            <li><Link to="/aboutus">About Us</Link></li>
-                            <li><Link to="/contact">Contact</Link></li>
-                            <li><Link to="/results">Results</Link></li> {/* Link to Results Page */}
+                            <li><a href="/about-us.html">About Us</a></li>
+                            <li><a href="/contact.html">Contact</a></li>
+                            <li><Link to="/results">Result</Link></li>
                         </ul>
                     </nav>
                 </header>
@@ -52,10 +55,8 @@ const App = () => {
                         <Route path="/" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
                         <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/aboutus" element={<AboutUs />} />
-                        <Route path="/contact" element={<Contact />} />
                         <Route path="/results" element={<ResultsPage />} />
-                        <Route path="*" element={<div>404 - Page Not Found</div>} />
+                        <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
                 </main>
 

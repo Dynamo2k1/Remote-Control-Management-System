@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execution Results</title>
+    <link rel="stylesheet" href="css/ResultsPage.css">
+</head>
+<body>
+    <header>
+        <h1>Execution Results</h1>
+    </header>
+    <main>
+        <section id="results-container" class="results-container">
+            <!-- Results will be dynamically rendered here -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Remote Control Management System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Fetch results from localStorage
+        const resultsData = JSON.parse(localStorage.getItem('results')) || [];
+
+        const resultsContainer = document.getElementById('results-container');
+
+        if (resultsData.length === 0) {
+            resultsContainer.innerHTML = "<p>No results found. Please upload a YAML file from the Dashboard.</p>";
+        } else {
+            resultsData.forEach((deviceResult, index) => {
+                const deviceDiv = document.createElement('div');
+                deviceDiv.className = 'device-result';
+
+                let actionsHtml = '';
+                deviceResult.results.forEach(action => {
+                    actionsHtml += `
+                        <div class="action-result ${action.result.status === '❌ Failure' ? 'failure' : 'success'}">
+                            <strong>Action:</strong> ${action.action} <br />
+                            <strong>Status:</strong> ${action.result.status} <br />
+                            <strong>Output:</strong> <pre>${action.result.output || 'No output'}</pre>
+                            <strong>Error:</strong> <pre>${action.result.error || 'No error'}</pre>
+                        </div>
+                    `;
+                });
+
+                deviceDiv.innerHTML = `
+                    <h3>Device: ${deviceResult.device}</h3>
+                    ${actionsHtml}
+                `;
+
+                resultsContainer.appendChild(deviceDiv);
+            });
+        }
+    </script>
+</body>
+</html>
