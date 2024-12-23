@@ -26,28 +26,34 @@ const App = () => {
         <Router>
             <div className="app-layout">
                 {/* Header */}
-                <header>
-                    <nav className="navbar">
-                        <div className="navbar-left">
-                            <button
-                                id="theme-toggle"
-                                onClick={toggleTheme}
-                                aria-label="Toggle Theme"
-                                className="theme-toggle-btn"
-                            >
-                                {document.body.getAttribute("data-theme") === "dark" ? "☀️" : "🌙"}
-                            </button>
-                        </div>
-                        <div className="navbar-title">Remote Control Management System</div>
-                        <ul className="navbar-right">
-                            <li><Link to="/">Login</Link></li>
-                            <li><Link to="/register">Register</Link></li>
-                            <li><a href="/about-us.html">About Us</a></li>
-                            <li><a href="/contact.html">Contact</a></li>
-                            <li><Link to="/results">Result</Link></li>
-                        </ul>
-                    </nav>
-                </header>
+
+                Here's the updated HTML and CSS code with the requested changes:
+
+HTML (Updated Header Layout)
+html
+Copy code
+                    <header>
+                        <nav className="navbar">
+                            <div className="navbar-left">
+                                <button
+                                    id="theme-toggle"
+                                    onClick={toggleTheme}
+                                    aria-label="Toggle Theme"
+                                    className="theme-toggle-btn"
+                                >
+                                    {document.body.getAttribute("data-theme") === "dark" ? "☀️" : "🌙"}
+                                </button>
+                            </div>
+                            <div className="navbar-title">Remote Control Management System</div>
+                            <ul className="navbar-right">
+                                <li><Link to="/">Login</Link></li>
+                                <li><Link to="/register">Register</Link></li>
+                                <li><a href="/about-us.html">About Us</a></li>
+                                <li><a href="/contact.html">Contact</a></li>
+                                <li><Link to="/results">Result</Link></li>
+                            </ul>
+                        </nav>
+                    </header>
 
                 {/* Main Content */}
                 <main>

@@ -1,237 +1,127 @@
-/* General Body Styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body[data-theme="light"] {
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-body[data-theme="dark"] {
-    background-color: #222;
-    color: #f4f4f9;
-}
-
-/* Header Styling */
-.navbar {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-body[data-theme="dark"] .navbar {
-    background-color: #333;
-    color: #f4f4f9;
-}
-
-.navbar h1 {
-    margin: 0;
-}
-
-.navbar nav {
-    display: flex;
-    gap: 15px;
-}
-
-.navbar nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-body[data-theme="dark"] .navbar nav a {
-    color: #f4f4f9;
-}
-
-.navbar nav a:hover {
-    background-color: #0056b3;
-}
-
-body[data-theme="dark"] .navbar nav a:hover {
-    background-color: #444;
-}
-
-/* Main Content Styling */
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    transition: background-color 0.3s ease;
-}
-
-body[data-theme="dark"] main {
-    background-color: #333;
-    color: #f4f4f9;
-}
-
-/* Container Styling */
+/* General Container */
 .container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f7fa;
 }
 
-body[data-theme="dark"] .container {
-    background: #444;
-    color: #f4f4f9;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+/* Login Box */
+.login-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  text-align: center;
 }
 
-/* Footer Styling */
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #333;
-    color: white;
+/* Title */
+.title {
+  margin-bottom: 1rem;
+  font-size: 28px;
+  color: #333;
+  font-weight: bold;
 }
 
-body[data-theme="dark"] footer {
-    background-color: #111;
-    color: #f4f4f9;
-}
-
-/* Form Styling */
-form div {
-    margin-bottom: 15px;
-    text-align: left;
+/* Form Inputs */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555555; /* Slightly darker for better contrast */
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #555;
 }
 
-body[data-theme="dark"] label {
-    color: #f4f4f9;
+/* General input styling */
+.input {
+  width: 100%; /* Makes both input fields take full width */
+  padding: 0.9rem; /* Uniform padding */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
 
-/* Input Field Styling */
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px; /* Padding for better touch targets */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 14px; /* Font size for readability */
-    background-color: #f9f9f9;
-    transition: background-color 0.3s ease, color 0.3s ease;
+/* Input container with eye icon */
+.input-container {
+  position: relative; /* Allows positioning for the eye icon */
+  width: 100%; /* Make the container full width */
 }
 
-body[data-theme="dark"] input[type="text"],
-body[data-theme="dark"] input[type="email"],
-body[data-theme="dark"] input[type="password"] {
-    background-color: #555;
-    border: 1px solid #666;
-    color: #f4f4f9;
+/* Input field inside container */
+.input-container input {
+  width: 100%; /* Ensures the input field occupies full width */
+  padding: 0.9rem;
+  padding-right: 2.5rem; /* Space for the eye icon */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-input:focus {
-    border-color: #007BFF;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-body[data-theme="dark"] input:focus {
-    border-color: #0056b3;
-    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
-}
-
-/* Password Input Container */
-.password-group {
-   position: relative; /* Position relative to contain the eye icon */
-}
-
-/* Eye Icon Styling */
+/* Eye icon styling */
 .eye-icon {
-   position: absolute; /* Position absolutely within the container */
-   right: 10px; /* Space from the right edge */
-   top: 50%; /* Center vertically */
-   transform: translateY(-50%); /* Adjust vertical alignment */
-   color: #aaa; /* Default icon color */
-   cursor: pointer; /* Change cursor to pointer on hover */
-   transition: color 0.3s ease;
+  position: absolute; /* Position the icon absolutely */
+  right: 10px; /* Keep it inside the input field on the right */
+  top: 50%; /* Align vertically */
+  transform: translateY(-50%); /* Center the icon vertically */
+  cursor: pointer; /* Pointer cursor for interaction */
+  color: #555; /* Eye icon color */
+  font-size: 18px; /* Icon size */
 }
 
-body[data-theme="dark"] .eye-icon {
-   color: #ddd;
+
+/* Button */
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.eye-icon:hover {
-   color: #007BFF; /* Change icon color on hover for feedback */
+.login-button:hover {
+  background-color: #0056b3;
 }
 
-body[data-theme="dark"] .eye-icon:hover {
-   color: #66aaff;
-}
-
-/* Button Styling */
-button {
-   width: 100%;
-   padding: 10px; 
-   background-color: #007BFF; 
-   color: white; 
-   border:none; 
-   border-radius:5px; 
-   font-size :16px; 
-   cursor:pointer; 
-   transition : background-color .3s ease; 
-}
-
-body[data-theme="dark"] button {
-   background-color: #0056b3;
-   color: #f4f4f9;
-}
-
-button:hover { 
-   background-color :#0056b3; 
-}
-
-body[data-theme="dark"] button:hover {
-   background-color: #003f8f;
-}
-
-/* Link Styling */
-p a { 
-   color :#007BFF; 
-   text-decoration :none; 
-   transition :color .3s ease; 
-}
-
-body[data-theme="dark"] p a {
-   color: #66aaff;
-}
-
-p a:hover { 
-   color :#0056b3; 
-   text-decoration :underline; 
-}
-
-body[data-theme="dark"] p a:hover {
-   color: #003f8f;
-}
-
-/* Error Message Styling */
+/* Error Message */
 .error-message {
-   color : red; /* Red color for error messages */
-   margin-top :10px; /* Space above error message */
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Register Link */
+.register-link {
+  margin-top: 1.5rem;
+  font-size: 15px;
+  color: #555;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  margin-top: 2rem;
+  font-size: 12px;
+  color: #aaa;
 }

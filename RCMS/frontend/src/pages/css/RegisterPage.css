@@ -1,108 +1,118 @@
-/* Register Container */
-.register-container {
+/* General Container */
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Register Card */
-.register-card {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background: var(--input-bg);
+    height: 100vh;
+    background-color: #f5f7fa;
+  }
+  
+  /* Register Box */
+  .register-box {
+    background: #fff;
+    padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
     text-align: center;
-}
-
-.register-card h2 {
-    margin-bottom: 15px;
-    color: var(--text-color);
-}
-
-/* Form Group */
-.register-form .form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-/* Labels */
-.register-form label {
+  }
+  
+  /* Title */
+  .title {
+    margin-bottom: 1rem;
+    font-size: 28px;
+    color: #333;
     font-weight: bold;
-    color: #555;
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* Input Fields */
-.register-form input {
-    width: 100%;
-    padding: 12px;
+  }
+  
+  /* Form Inputs */
+  .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  label {
     font-size: 16px;
-    border: 1px solid var(--input-border);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #555;
+  }
+  
+/* General input styling */
+.input {
+    width: 100%; /* Makes both input fields take full width */
+    padding: 0.9rem; /* Uniform padding */
+    border: 1px solid #ddd;
     border-radius: 5px;
-    background: var(--input-bg);
-    color: var(--text-color);
-    transition: border-color 0.3s, box-shadow 0.3s ease;
-}
-
-.register-form input:focus {
-    border-color: var(--button-bg);
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
-}
-
-/* Password Input Container */
-.password-group {
-   position: relative; /* Position relative to contain the eye icon */
-}
-
-/* Eye Icon Styling */
-.eye-icon {
-   position: absolute; /* Position absolutely within the container */
-   right: 10px; /* Space from the right edge */
-   top: 50%; /* Center vertically */
-   transform: translateY(-50%); /* Adjust vertical alignment */
-   color: #aaa; /* Default icon color */
-   cursor: pointer; /* Change cursor to pointer on hover */
-}
-
-.eye-icon:hover {
-   color: var(--button-bg); /* Change icon color on hover for feedback */
-}
-
-/* Register Button */
-.register-button {
+    font-size: 16px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+  }
+  
+  /* Input container with eye icon */
+  .input-container {
+    position: relative; /* Allows positioning for the eye icon */
+    width: 100%; /* Make the container full width */
+  }
+  
+  /* Input field inside container */
+  .input-container input {
+    width: 100%; /* Ensures the input field occupies full width */
+    padding: 0.9rem;
+    padding-right: 2.5rem; /* Space for the eye icon */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  /* Eye icon styling */
+  .eye-icon {
+    position: absolute; /* Position the icon absolutely */
+    right: 10px; /* Keep it inside the input field on the right */
+    top: 50%; /* Align vertically */
+    transform: translateY(-50%); /* Center the icon vertically */
+    cursor: pointer; /* Pointer cursor for interaction */
+    color: #555; /* Eye icon color */
+    font-size: 18px; /* Icon size */
+  }
+  
+  
+  /* Button */
+  .register-button {
     width: 100%;
-    padding: 10px;
-    background-color: var(--button-bg);
-    color: #0056b3;
+    padding: 1rem;
+    background-color: #007bff;
+    color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s ease;
-}
-
-.register-button:hover {
- 
-    background-color: black ;
-    transform: translateY(-2px);
-}
-
-/* Message Styling */
-.error-message {
+    transition: background-color 0.3s;
+  }
+  
+  .register-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Error and Success Messages */
+  .error-message {
     color: red;
     margin-top: 10px;
     font-size: 14px;
-}
-
-.success-message {
+  }
+  
+  .success-message {
     color: green;
     margin-top: 10px;
     font-size: 14px;
-}
+  }
+  
+  /* Footer */
+  .footer {
+    margin-top: 2rem;
+    font-size: 12px;
+    color: #aaa;
+  }
+  

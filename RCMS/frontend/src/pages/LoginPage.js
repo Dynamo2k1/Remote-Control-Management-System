@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { login } from "../services/api";
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
-import "./css/LoginPage.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Eye icons
+import "./css/LoginPage.css"; // Import CSS
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +10,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
@@ -27,24 +28,27 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <h2>Welcome Back</h2>
-        <p>Login to your account</p>
+    <div className="container">
+      <div className="login-box">
+        <h1 className="title">Login</h1>
         <form onSubmit={handleSubmit} className="login-form">
+          {/* Username Input */}
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Username:</label>
             <input
               type="text"
               id="username"
-              placeholder="Enter your username"
+              placeholder="Enter your email"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              className="input"
             />
           </div>
-          <div className="form-group password-group">
-            <label htmlFor="password">Password</label>
+
+          {/* Password Input */}
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
             <div className="input-container">
               <input
                 type={showPassword ? "text" : "password"}
@@ -53,21 +57,32 @@ const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="input"
               />
-              <span 
-                className="eye-icon" 
+              {/* Eye icon to toggle password visibility */}
+              <span
+                className="eye-icon"
                 onClick={() => setShowPassword(!showPassword)}
-                style={{ cursor: 'pointer' }} // Ensure the cursor shows pointer on hover
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
           </div>
+
+          {/* Login Button */}
           <button type="submit" disabled={isLoading} className="login-button">
             {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
+
+        {/* Error Message */}
         {error && <p className="error-message">{error}</p>}
+
+        {/* Registration Link */}
+        <div className="register-link">
+          Don't have an account? <a href="/register">Register here.</a>
+        </div>
+        <footer className="footer">© 2024 Seekora. All rights reserved.</footer>
       </div>
     </div>
   );
