@@ -82,7 +82,7 @@ const LoginPage = () => {
         <div className="register-link">
           Don't have an account? <a href="/register">Register here.</a>
         </div>
-        <footer className="footer">© 2024 Seekora. All rights reserved.</footer>
+        <footer className="footer">© 2024 Sentra. All rights reserved.</footer>
       </div>
     </div>
   );

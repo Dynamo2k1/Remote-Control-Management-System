@@ -15,9 +15,6 @@ const ResultsPage = () => {
             const storedResults = JSON.parse(localStorage.getItem("results")) || [];
             if (storedResults.length > 0) {
                 setResults(storedResults);
-            } else {
-                // If no results found, navigate back to the dashboard
-                navigate("/");
             }
         }
     }, [location.state, navigate]);

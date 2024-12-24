@@ -44,13 +44,14 @@ Copy code
                                     {document.body.getAttribute("data-theme") === "dark" ? "☀️" : "🌙"}
                                 </button>
                             </div>
-                            <div className="navbar-title">Remote Control Management System</div>
+                            <div className="navbar-title">Sentra</div>
                             <ul className="navbar-right">
                                 <li><Link to="/">Login</Link></li>
                                 <li><Link to="/register">Register</Link></li>
                                 <li><a href="/about-us.html">About Us</a></li>
                                 <li><a href="/contact.html">Contact</a></li>
                                 <li><Link to="/results">Result</Link></li>
+                                <li><Link to="/dashboard">Dashboard</Link></li>
                             </ul>
                         </nav>
                     </header>

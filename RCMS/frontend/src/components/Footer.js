@@ -4,7 +4,7 @@ import "./css/Footer.css";
 const Footer = () => {
     return (
         <footer className="footer">
-            <p>© 2024 Remote Control Management System. All rights reserved.</p>
+            <p>© 2024 Sentra. All rights reserved.</p>
         </footer>
     );
 };

@@ -11,12 +11,52 @@ const RegisterPage = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false); // State for password visibility
+  const [passwordStrength, setPasswordStrength] = useState(""); // State for password strength feedback
+
+  // Password strength checker
+  const checkPasswordStrength = (password) => {
+    let strength = 0;
+
+    // Conditions for strength
+    if (password.length >= 8) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[a-z]/.test(password)) strength++;
+    if (/\d/.test(password)) strength++;
+    if (/[\W_]/.test(password)) strength++;
+
+    // Feedback based on conditions
+    if (strength === 0) return "Too Weak";
+    if (strength <= 2) return "Weak";
+    if (strength === 3) return "Medium";
+    if (strength === 4) return "Strong";
+    if (strength === 5) return "Very Strong";
+  };
+
+  // Handle password input and check strength
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    setPasswordStrength(checkPasswordStrength(value)); // Evaluate strength dynamically
+  };
 
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
     setSuccessMessage("");
+
+    // Validation for email format
+    if (!email.includes("@") || !email.includes(".")) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    // Validation for password strength
+    if (passwordStrength === "Weak" || passwordStrength === "Too Weak") {
+      setError("Password is too weak. Please choose a stronger password.");
+      return;
+    }
+
     setIsLoading(true);
 
     // Call register API
@@ -28,6 +68,7 @@ const RegisterPage = () => {
       setUsername("");
       setEmail("");
       setPassword("");
+      setPasswordStrength("");
     } else {
       setError(result.message || "Failed to register");
     }
@@ -75,7 +116,7 @@ const RegisterPage = () => {
                 id="password"
                 placeholder="Enter your password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 required
                 className="input"
               />
@@ -89,6 +130,17 @@ const RegisterPage = () => {
             </div>
           </div>
 
+          {/* Password Strength Indicator */}
+          {password && (
+            <p
+              className={`password-strength ${
+                passwordStrength.replace(" ", "-").toLowerCase()
+              }`}
+            >
+              Strength: {passwordStrength}
+            </p>
+          )}
+
           {/* Register Button */}
           <button type="submit" disabled={isLoading} className="register-button">
             {isLoading ? "Registering..." : "Register"}
@@ -98,11 +150,12 @@ const RegisterPage = () => {
         {/* Error and Success Messages */}
         {error && <p className="error-message">{error}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
+
         <div className="register-link">
           Already have an account? <a href="/login">Login here.</a>
         </div>
 
-        <footer className="footer">© 2024 Seekora. All rights reserved.</footer>
+        <footer className="footer">© 2024 Sentra. All rights reserved.</footer>
       </div>
     </div>
   );

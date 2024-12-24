@@ -1,118 +1,166 @@
 /* General Container */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f7fa;
-  }
-  
-  /* Register Box */
-  .register-box {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 500px;
-    text-align: center;
-  }
-  
-  /* Title */
-  .title {
-    margin-bottom: 1rem;
-    font-size: 28px;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  /* Form Inputs */
-  .form-group {
-    margin-bottom: 1.5rem;
-    text-align: left;
-  }
-  
-  label {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    display: block;
-    color: #555;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f7fa;
+}
+
+/* Register Box */
+.register-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  text-align: center;
+}
+
+/* Title */
+.title {
+  margin-bottom: 1rem;
+  font-size: 28px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+/* Label Styling */
+label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #555;
+}
+
 /* General input styling */
 .input {
-    width: 100%; /* Makes both input fields take full width */
-    padding: 0.9rem; /* Uniform padding */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box; /* Ensures padding doesn't affect width */
-  }
-  
-  /* Input container with eye icon */
-  .input-container {
-    position: relative; /* Allows positioning for the eye icon */
-    width: 100%; /* Make the container full width */
-  }
-  
-  /* Input field inside container */
-  .input-container input {
-    width: 100%; /* Ensures the input field occupies full width */
-    padding: 0.9rem;
-    padding-right: 2.5rem; /* Space for the eye icon */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
-  
-  /* Eye icon styling */
-  .eye-icon {
-    position: absolute; /* Position the icon absolutely */
-    right: 10px; /* Keep it inside the input field on the right */
-    top: 50%; /* Align vertically */
-    transform: translateY(-50%); /* Center the icon vertically */
-    cursor: pointer; /* Pointer cursor for interaction */
-    color: #555; /* Eye icon color */
-    font-size: 18px; /* Icon size */
-  }
-  
-  
-  /* Button */
-  .register-button {
-    width: 100%;
-    padding: 1rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .register-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Error and Success Messages */
-  .error-message {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  
-  .success-message {
-    color: green;
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  
-  /* Footer */
-  .footer {
-    margin-top: 2rem;
-    font-size: 12px;
-    color: #aaa;
-  }
-  
+  width: 100%; /* Makes input fields take full width */
+  padding: 0.9rem; /* Uniform padding */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Prevents padding from affecting width */
+}
+
+/* Input container with eye icon */
+.input-container {
+  position: relative; /* Allows positioning of the eye icon */
+  width: 100%; /* Full width container */
+}
+
+/* Input field inside container */
+.input-container input {
+  width: 100%; /* Makes the input field occupy full width */
+  padding: 0.9rem;
+  padding-right: 2.5rem; /* Leaves space for the eye icon */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Eye icon styling */
+.eye-icon {
+  position: absolute; /* Positioned absolutely within the container */
+  right: 10px; /* Aligned to the right */
+  top: 50%; /* Vertically centered */
+  transform: translateY(-50%); /* Centered vertically */
+  cursor: pointer; /* Makes it clickable */
+  color: #555; /* Icon color */
+  font-size: 18px; /* Icon size */
+}
+
+/* Button */
+.register-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+}
+
+/* Error and Success Messages */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Footer */
+.footer {
+  margin-top: 2rem;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* Password Strength Indicator */
+.password-strength {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Dynamic Colors for Password Strength */
+.password-strength.too-weak {
+  color: red;
+}
+
+.password-strength.weak {
+  color: orange;
+}
+
+.password-strength.medium {
+  color: yellow;
+}
+
+.password-strength.strong {
+  color: green;
+}
+
+.password-strength.very-strong {
+  color: darkgreen;
+}
+
+/* Additional Styling for Links */
+.register-link {
+  margin-top: 1rem;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Loading State for Button */
+.register-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
