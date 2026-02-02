@@ -1,133 +1,195 @@
+# 🚀 Remote Control Management System (RCMS)
 
-# 🚀 **Remote Control Management System (RCMS)**
-
-**RCMS is a versatile and secure tool designed to streamline the management of remote devices, automate service management, and provide real-time monitoring. Perfect for system administrators and IT professionals who need efficient control over their networked systems. 💻✨**
-
----
-
-## 🌟 **Key Features**
-
-- 🔒 **Secure Device Management**: Remotely manage multiple devices with encrypted credentials.
-- 📁 **Service Management Automation**: Start, stop, enable, or check the status of services with YAML-based task definitions.
-- 🕒 **Real-time Monitoring**: Track live updates on system metrics and device statuses.
-- 🌐 **Easy-to-Use YAML Configuration**: Define your tasks in a structured YAML file for seamless execution.
-- 🐳 **Dockerized Setup**: Simplified deployment for scalability and consistency.
-- 🎨 **Modern Web Interface**: Manage tasks and monitor progress via an intuitive frontend.
+**RCMS** is a powerful, secure, and centralized platform designed for system administrators to manage networked fleets of devices. It automates critical IT operations—from software installation to service management—through a simple YAML configuration, all visualized in a modern real-time dashboard.
 
 ---
 
-## 📂 **YAML Configuration Example**
+## 🌟 Why RCMS?
 
-The **RCMS** system uses YAML files to define actions for remote devices. Below is an example of a `tasks.yaml` file:
+Managing multiple remote servers manually via SSH is tedious and error-prone. RCMS solves this by allowing you to:
 
-```yaml
-devices:
-  - ip: "192.168.100.128"
-    username: "dynamo"
-    password: "1590"
-    actions:
-      - start: "apache2"
-      - status: "apache2"
-      - enable: "apache2"
-  - ip: "192.168.100.129"
-    username: "admin"
-    password: "admin123"
-    actions:
-      - stop: "nginx"
-      - status: "nginx"
-```
-
-### 💡 **How it Works**
-- **Devices**: Add the IP, username, and password of the target device.
-- **Actions**: Define the tasks for each device, such as:
-  - `start`: Start a service.
-  - `stop`: Stop a service.
-  - `status`: Check the status of a service.
-  - `enable`: Enable a service to start on boot.
+* **Orchestrate Fleets:** Push commands to multiple servers simultaneously.
+* **Declarative Configuration:** Define *what* you want (e.g., "nginx should be running") using simple YAML files, and let RCMS handle the *how*.
+* **Live Feedback:** Watch command execution logs and exit statuses in real-time via WebSockets.
 
 ---
 
-## ⚙️ **Functionalities**
+## ✨ Key Features
 
-1. **Manage Services with Ease**:
-   - Automate repetitive tasks like starting or stopping services.
-   - Check service statuses or enable them to run at boot.
+* **🔐 Secure Authentication**: JWT-based login system with role-based access (Admin/User).
+* **⚡ specific Actions**: detailed control over system services:
+* `start`, `stop`, `restart` services.
+* `enable`, `disable` boot-time services.
+* `install` new packages automatically.
+* `status` checks for health monitoring.
 
-2. **Device Connectivity**:
-   - Connect securely to remote devices using SSH.
 
-3. **Task Execution**:
-   - Read tasks from a YAML configuration file and execute them on target devices.
-
-4. **Real-Time Updates**:
-   - Monitor device metrics and service statuses via WebSocket integration.
-
----
-
-## 💻 **Technologies Used**
-
-### Backend
-- 🐍 **Flask**: Lightweight and powerful backend framework.
-- 📦 **SQLite**: A lightweight database for storing configuration and logs.
-- 🌐 **WebSockets**: Enables real-time updates for tasks and monitoring.
-
-### Frontend
-- ⚛️ **React**: Interactive and responsive user interface.
-- 🎨 **CSS**: Ensures a modern and professional design.
-
-### Deployment
-- 🐳 **Docker**: For containerized and scalable deployment.
+* **📄 YAML-Based Tasking**: No complex scripting required. Just upload a declarative `.yaml` file.
+* **📡 Real-Time Monitoring**: WebSocket integration provides instant feedback on task execution from remote servers.
+* **🐳 Dockerized Architecture**: Fully containerized backend and frontend for instant deployment.
+* **🖥️ Modern UI**: A responsive React frontend using MDB Bootstrap for a sleek user experience.
 
 ---
 
-## 🚀 **Getting Started**
+## 🛠️ Tech Stack
+
+### **Backend**
+
+* **Framework**: Python Flask (Factory Pattern)
+* **Networking**: `Paramiko` for SSH tunneling, `Socket.IO` for real-time streams.
+* **Database**: SQLite (SQLAlchemy ORM).
+* **Security**: Flask-JWT-Extended for token-based auth.
+
+### **Frontend**
+
+* **Library**: React.js (v18).
+* **Styling**: MDB React UI Kit & Custom CSS.
+* **State**: React Hooks & Context API.
+* **Communication**: Axios (REST) & Socket.io-client (WebSockets).
+
+### **DevOps**
+
+* **Containerization**: Docker & Docker Compose.
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-Before getting started, ensure you have the following installed:
-- **Docker**
-- **Python 3.x** (with `pip`)
+* **Docker Desktop** installed on your machine.
+* **Git**.
 
 ### Installation
 
-1. **Clone this repository**:
-   ```bash
-   git clone https://github.com/Dynamo2k1/Remote-Control-Management-System.git
-   cd Remote-Control-Management-System/RCMS
-   ```
+1. **Clone the Repository**
+```bash
+git clone https://github.com/Dynamo2k1/Remote-Control-Management-System.git
+cd Remote-Control-Management-System/RCMS
 
-2. **Start the system**:
-   ```bash
-   docker-compose up --build
-   ```
+```
 
-3. **Prepare your tasks**:
-   - Create a YAML file (e.g., `tasks.yaml`) with the structure described above.
 
-4. **Run the task executor**:
-   ```bash
-   python3 execute_tasks.py --config tasks.yaml
-   ```
+2. **Launch with Docker Compose**
+```bash
+docker-compose up --build
 
-5. **Access the application**:
-   - **Frontend**: [http://localhost:3000](http://localhost:3000)
-   - **Backend**: [http://localhost:5000](http://localhost:5000)
+```
+
+
+*This will start the Backend on port `5000` and the Frontend on port `3000`.*
+3. **Access the Application**
+* Open your browser and navigate to: [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000)
+
+
 
 ---
 
-## 📧 **Contact**
+## 🔑 Default Credentials
 
-For any queries or suggestions, feel free to reach out:
+Upon first startup, the system automatically creates these default accounts:
 
-- **GitHub**: [Dynamo2k1](https://github.com/Dynamo2k1)
-- **Email**: [dynamo89247@gmail.com](mailto:dynamo89247@gmail.com)
+| Role | Username | Password |
+| --- | --- | --- |
+| **Administrator** | `admin` | `admin123` |
+| **Standard User** | `user` | `user123` |
 
----
-
-## 📝 **License**
-
-This project is licensed under the **MIT License**. You are free to use, modify, and distribute the project with proper attribution.
+> ⚠️ **Note:** For security, these credentials are reset/managed in `app.py`. It is recommended to change these in a production environment.
 
 ---
 
-### 🎉 **Happy Managing!** 🎉
+## 📂 Configuration Guide (YAML)
+
+RCMS uses a declarative YAML format to instruct remote devices.
+
+### Supported Actions
+
+| Action | Description | Example |
+| --- | --- | --- |
+| `install` | Installs a package (apt) | `install: "nginx"` |
+| `start` | Starts a systemd service | `start: "apache2"` |
+| `stop` | Stops a systemd service | `stop: "docker"` |
+| `enable` | Enables service on boot | `enable: "ssh"` |
+| `status` | Checks service status | `status: "nginx"` |
+
+### Example `tasks.yaml`
+
+Create a file named `tasks.yaml` and upload it via the dashboard:
+
+```yaml
+devices:
+  # Device 1: Web Server
+  - ip: "192.168.1.50"
+    username: "ubuntu"
+    password: "securepassword123"
+    actions:
+      - install: "nginx"      # Install Nginx
+      - enable: "nginx"       # Enable it on boot
+      - start: "nginx"        # Start the service
+
+  # Device 2: Database Server
+  - ip: "192.168.1.51"
+    username: "admin"
+    password: "dbpassword456"
+    actions:
+      - status: "postgresql"  # Check DB status
+      - stop: "apache2"       # Ensure Apache is off
+
+```
+
+---
+
+## 📂 Project Structure
+
+```bash
+RCMS/
+├── backend/
+│   ├── instance/          # SQLite Database
+│   ├── routes/            # API Endpoints (Auth, Devices, Files)
+│   ├── utils/             # SSH Executor & YAML Parsers
+│   ├── app.py             # App Factory & Config
+│   ├── Dockerfile         # Python Container Logic
+│   └── requirements.txt   # Python Dependencies
+├── frontend/
+│   ├── public/            # Static Assets
+│   ├── src/               # React Components & Pages
+│   ├── Dockerfile         # Node.js Container Logic
+│   └── package.json       # JS Dependencies
+├── docker-compose.yml     # Container Orchestration
+└── README.md              # Documentation
+
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📧 Contact
+
+**Project Maintainer**: Dynamo2k1
+
+**Email**: [dynamo89247@gmail.com](mailto:dynamo89247@gmail.com)
+
+**GitHub**: [github.com/Dynamo2k1](https://github.com/Dynamo2k1)
+
+---
+
+## 📝 License
+
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+---
+
+<div align="center">
+<sub>Built with ❤️ by Dynamo2k1</sub>
+</div>
